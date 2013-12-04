@@ -1,5 +1,8 @@
 <?php
+
 session_start();
+
+// All backgrounds via unsplash.com
 
 if(!isset($_SESSION['sessionBackground'])){
 

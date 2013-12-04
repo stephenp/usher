@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-//$secretpassword = 'apt122';
 $secretpassword = 'demo';
 $password = $_POST['password'];
 
