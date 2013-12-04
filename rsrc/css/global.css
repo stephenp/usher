@@ -1,0 +1,305 @@
+/* Basics */
+body {
+	background-attachment: fixed;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font: 0.9em/1.75em "Titillium Web", "Lucida Grande", "Verdana", "Arial", sans-serif;
+	color: #1E1E1E;
+}
+
+::selection {
+	background: #fff;
+}
+
+::-moz-selection {
+	background: #fff;
+}
+
+a {
+	text-decoration: none;
+	color: #606C88;
+}
+
+/* Login / Logout */
+form#login {
+	padding: 0;
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 300px;
+    margin-left: -150px; margin-top: -25px;	
+}
+
+form#login input.text {
+    font-size: 30px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);   
+    text-shadow: 0 1px 0 #000;
+}
+
+form#login input {
+	outline: none;
+    padding: 8px;
+	width: 284px;
+}
+
+#logout {
+}
+
+nav {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+nav ol {
+	display: none;
+	list-style: none;
+	margin: 7px; padding: 0;
+}
+
+nav ol li {
+	position: relative;
+	float: left;
+	top: -45px;
+	opacity: 0;
+}
+
+nav ol li a {
+	display: block;
+	color: rgba(0, 0, 0, 0.5);
+	text-shadow: 0 1px 0 rgba(255, 255, 255 1);
+	text-align: center;
+
+    background: rgba(255, 255, 255, 0.4);
+
+	font-weight: bold;
+	font-size: 15px;
+	margin: 0 7px;
+	width: 16px;
+	padding: 9px;
+	transition: background 100ms linear;
+	-moz-transition: background 100ms linear; /* Firefox 4 */
+	-webkit-transition: background 100ms linear; /* Safari and Chrome */
+	-o-transition: background 100ms linear; /* Opera */
+	
+	-moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+	
+}
+
+nav ol li a.current, nav ol li a.current:hover {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+nav ol li a:hover {
+	background: rgba(255, 255, 255, 0.6);
+}
+
+/* Regular pages */
+#content {
+	padding: 76px 25px;
+}
+
+table#filelist {
+	margin-left: -19px;
+	background: rgba(255, 255, 255, 0.75);
+	padding: 10px 0;
+	width: auto;
+}
+
+table#filelist * {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+table#filelist td:nth-child(1) {
+	width: auto;
+}
+
+table#filelist td {
+	padding: 5px 25px;
+	font-size: 16px;
+	word-break: break-all;
+}
+
+table#filelist td i {
+	margin-right: 8px; /* Match padding above */
+}
+
+table#filelist td span {
+	width: 100%;
+	display: block;
+	text-align: center;
+	white-space: nowrap;
+}
+
+/* Reusable */
+.modal, .alert {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+}
+
+.modal.transparent, .alert {
+	background: rgba(255, 255, 255, 0);
+	border: 1px solid transparent;
+}
+
+.modal img.fullsize {
+	width: 100%;
+	height: auto;
+}
+
+.button {
+	font-family: "Lucida Grande", "Verdana", "Arial", sans-serif;
+	cursor: default;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px;
+
+	background: rgba(96, 108, 136, 0.75); /* Old browsers */
+}
+
+
+#stats-bar {
+	font-family: "Verdana", "Lucida Grande", "Trebuchet MS", sans-serif;
+	font-size: 11px;
+	text-align: center;
+	position: fixed;
+	bottom: 0; left: 0;
+	margin: 0; padding: 3px 10px;
+	box-sizing: border-box;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.75);
+	list-style: none;
+		    transition: background 100ms linear;
+	   -moz-transition: background 100ms linear; /* Firefox 4 */
+	-webkit-transition: background 100ms linear; /* Safari and Chrome */
+		 -o-transition: background 100ms linear; /* Opera */
+}
+
+#stats-bar:hover {
+	background: rgba(255, 255, 255, 0.9);
+}
+
+#stats-bar li, #stats-bar.loaded li:first-child {
+	display: none;
+	margin-right: 15px;
+	color: #3F3F3F;
+	white-space: nowrap;
+}
+
+#stats-bar li:first-child, #stats-bar.loaded li {
+	display: inline;
+}
+
+#stats-bar li:first-child {
+	margin-left: 0;
+}
+
+#stats-bar li i {
+	font-size: 14px;
+}
+
+.meter {
+	display: inline-block;
+	vertical-align: middle;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	margin: 5px 0;
+	position: relative;
+	width: 100px;
+	height: 25px;
+}
+
+.meter span {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	padding-right: 5px;
+	display: block;
+	background: rgba(0, 0, 0, 0.1);
+	height: 19px;
+	font-size: 12px;
+	line-height: 19px;
+	text-align: center;
+	transition: width 100ms linear;
+	-moz-transition: width 100ms linear; /* Firefox 4 */
+	-webkit-transition: width 100ms linear; /* Safari and Chrome */
+	-o-transition: width 100ms linear; /* Opera */
+	
+}
+
+input.button:hover, a.button:hover, .button a:hover {
+	cursor: pointer;
+	-moz-box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.40);
+	-webkit-box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.40);
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.40);
+}
+
+input.button:active, a.button:active, .button a:active {
+	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.20);
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.20);
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.20);
+}
+
+.button.small {
+	font-size: 9px;
+	text-transform: uppercase;
+	padding: 3px 5px;
+}
+
+.clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;content:""}.clearfix:after{clear:both}
+
+#serverAlert {
+	display: none; /* for now */
+	position: fixed;
+	bottom: -25px;
+	left: 0;
+	width: 100%;
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+#serverAlert .alert {
+	background: rgba(255, 255, 255, 0.75);
+	padding: 5px 10px;
+	margin: 25px 0;
+	font-size: 0.75em;
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	width: 100%;
+}
+
+#serverAlert .alert p {
+	margin: 5px 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+#plexControls {
+	z-index: 1000;
+}
+
+
+@media only screen and (max-width: 650px) {
+	html {
+	  -webkit-text-size-adjust: none;	
+	}
+	
+	body {
+	}
+
+	#overlay {
+		display: none !important;
+	}
+
+}
