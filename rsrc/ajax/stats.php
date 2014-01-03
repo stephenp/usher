@@ -77,8 +77,8 @@ $arr['receiveSpeed'] = $receivespeed;
 // Make it rain - Weather time!  Get the flat file and unserialize.  If it fails, the next if statement returns false and will create the file automatically (need to make sure you have permission though)
 $cachedWeather = unserialize(file_get_contents("weather.txt"));
 
-// If the data is older than 4 minutes, refresh:
-if(time() >= $cachedWeather['timestamp'] + 240) {
+// If the data is older than 7 minutes, refresh:
+if(time() >= $cachedWeather['timestamp'] + 420) {
 
 	// Get temperature in F
 	$json_string = file_get_contents("http://api.wunderground.com/api/0a4bf68d2d38fcab/geolookup/conditions/q/CA/Sacramento.json");
@@ -86,23 +86,37 @@ if(time() >= $cachedWeather['timestamp'] + 240) {
 	
 	$temp_f = $parsed_json->{'current_observation'}->{'temp_f'};
 	
+
 	// Get probability of precipitation  
 	$json_string = file_get_contents("http://api.wunderground.com/api/0a4bf68d2d38fcab/forecast/q/CA/Sacramento.json");
 	$parsed_json = json_decode($json_string);
 	
 	$pop = $parsed_json->{'forecast'}->{'simpleforecast'}->{'forecastday'}[0]->{'pop'};
 
+
+	// Get Sunset time
+	$json_string = file_get_contents("http://api.wunderground.com/api/0a4bf68d2d38fcab/astronomy/q/CA/Sacramento.json");
+	$parsed_json = json_decode($json_string);
+
+	$sunset_h = $parsed_json->{'moon_phase'}->{'sunset'}->{'hour'};
+	$sunset_m = $parsed_json->{'moon_phase'}->{'sunset'}->{'minute'};
+	$sunset = "{$sunset_h}:{$sunset_m}";
+	$sunset = date("g:i a", strtotime($sunset));
+
 	// Store a cached value!
-	$weatherArr = array('timestamp' => time(), 'temp_f' => $temp_f, 'pop' => $pop);
+	$weatherArr = array('timestamp' => time(), 'temp_f' => $temp_f, 'pop' => $pop, 'sunset' => $sunset);
 	file_put_contents('weather.txt', serialize($weatherArr));
 
 	$arr['temp_f'] = $temp_f;
 	$arr['pop'] = $pop;
+	$arr['sunset'] = $sunset;
+	
 	
 } else {
 
 	$arr['temp_f'] = $cachedWeather['temp_f'];
 	$arr['pop'] = $cachedWeather['pop'];
+	$arr['sunset'] = $cachedWeather['sunset'];
 
 }
 

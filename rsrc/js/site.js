@@ -18,22 +18,11 @@
 		  $("#receiveSpeed").html(data.receiveSpeed);
 		  $("#weather_temp_f").html(data.temp_f);
 		  $("#weather_pop").html(data.pop);
+		  $("#weather_sunset").html(data.sunset);
 		  
 		  setTimeout(statsUpdater, 1000);
 		});	
 	};
-	
-	function loginError(){
-		$("#login.error")
-			.animate({ left: "50.0%" }, 200)
-			.animate({ left: "49.5%" }, 75 )
-			.animate({ left: "50.5%" }, 75 )
-			.animate({ left: "49.5%" }, 75 )
-			.animate({ left: "50.5%" }, 75 )
-			.animate({ left: "49.5%" }, 75 )
-			.animate({ left: "50.5%" }, 75 )
-			.animate({ left: "50.0%" }, 200);
-	}
 	
 
 	function plexGestures(){
@@ -115,7 +104,16 @@ $(document).ready(function(){
 				// LOGIN FAILED
 				$("#login").addClass("error");
 				$("#password").val("");
-				loginError();
+
+    		$("#login.error")
+    			.animate({ left: "50.0%" }, 200)
+    			.animate({ left: "49.5%" }, 75 )
+    			.animate({ left: "50.5%" }, 75 )
+    			.animate({ left: "49.5%" }, 75 )
+    			.animate({ left: "50.5%" }, 75 )
+    			.animate({ left: "49.5%" }, 75 )
+    			.animate({ left: "50.5%" }, 75 )
+    			.animate({ left: "50.0%" }, 200);
 			}
 
 		});
@@ -136,6 +134,8 @@ $(window).load(function(){
 	var plexFocus = 'false',
 		stallFor;	
 	
+	$("body").addClass("loaded");
+	
 	$("#password").focus();
 		
     $("nav ol").fadeIn(200, function() {
@@ -150,13 +150,10 @@ $(window).load(function(){
 	$('#plexControls').hover(function() {
 		//$(this).addClass('listening');
 		plexfocus = "true";
-		//$("#overlay").fadeIn(140);
 		plexGestures();
 	}, function(){
 		plexfocus = "false";
 		plexGestures();
-		//$(this).removeClass('listening');
-		//$("#overlay").fadeOut(150);			
 	});
 
 });
