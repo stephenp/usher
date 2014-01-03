@@ -35,22 +35,25 @@ $arr['freeSpace'] = $result[0][2] . "B free";
 $arr['percentUsed'] = $result[0][3];
 
 // Raid rebuild status
-$command = shell_exec('cat /proc/mdstat'); 
+$command = shell_exec('cat /proc/mdstat');
 preg_match("/finish=([^min]+)/", $command, $result);
 
-// Calculate to human readable
-$minutes =  $result[1];
-
-// Assuming that your minutes value is $minutes
-$d = floor ($minutes / 1440);
-$h = floor (($minutes - $d * 1440) / 60);
-$m = $minutes - ($d * 1440) - ($h * 60);
-
-// Convert minute to whole number
-$m = round($m, 0);
-
-// Store time for raidRebuild
-$arr['raidRebuild'] = "{$d}day {$h}hr {$m}min";
+// Only run raid calculation if raid is being rebuilt
+if(isset($result[1])) {
+	// Calculate to human readable
+	$minutes = $result[1];
+	
+	// Assuming that your minutes value is $minutes
+	$d = floor ($minutes / 1440);
+	$h = floor (($minutes - $d * 1440) / 60);
+	$m = $minutes - ($d * 1440) - ($h * 60);
+	
+	// Convert minute to whole number
+	$m = round($m, 0);
+	
+	// Store time for raidRebuild
+	$arr['raidRebuild'] = "{$d}day {$h}hr {$m}min";
+}
 
 // Get current network usage
 $sendspeed1 = shell_exec('cat /sys/class/net/eth0/statistics/tx_bytes'); 
