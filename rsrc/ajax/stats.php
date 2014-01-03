@@ -77,8 +77,8 @@ $arr['receiveSpeed'] = $receivespeed;
 // Make it rain - Weather time!  Get the flat file and unserialize.  If it fails, the next if statement returns false and will create the file automatically (need to make sure you have permission though)
 $cachedWeather = unserialize(file_get_contents("weather.txt"));
 
-// If the data is older than 7 minutes, refresh:
-if(time() >= $cachedWeather['timestamp'] + 420) {
+// If the data is older than 10 minutes, refresh:
+if(time() >= $cachedWeather['timestamp'] + 600) {
 
 	// Get temperature in F
 	$json_string = file_get_contents("http://api.wunderground.com/api/0a4bf68d2d38fcab/geolookup/conditions/q/CA/Sacramento.json");
